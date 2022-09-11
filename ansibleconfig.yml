@@ -1,0 +1,47 @@
+- name: install nginx on servers
+  hosts: nginxservers
+  become: yes
+
+  tasks:
+
+    - name: install nginx start
+      apt:
+        name: nginx
+        state: latest
+    - name: copy configfile
+      template:
+        src=./templates/index.nginx-debian.html.j2
+        dest=/var/www/html/index.nginx-debian.html
+
+- name: install configfile on second nginxserver2
+  hosts: nginxserver2
+  become: yes        
+  
+  tasks:
+
+    - name: cp configfile on nginxserver2
+      template:
+        src=./templates/index.nginx-debian2.html.j2
+        dest=/var/www/html/index.nginx-debian.html
+
+- name: install haproxy on servers
+  hosts: loadbalancers
+  become: yes
+
+  tasks:
+
+    - name: install haproxy start
+      apt: 
+        name: haproxy
+        state: latest
+    - name: copy config file
+      template:
+        src=./templates/haproxy.cfg.j2
+        dest=/etc/haproxy/haproxy.cfg
+    - name: restart haproxy
+      service: 
+        name: haproxy
+        state: restarted
+    
+
+          
