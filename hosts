@@ -1,0 +1,7 @@
+[nginxservers]
+nginxserver1 ansible_host=192.168.0.111 ansible_user=root ansible_ssh_private_key=/root/.ssh/id_rsa 
+nginxserver2 ansible_host=192.168.0.114 ansible_user=root ansible_ssh_private_key=/root/.ssh/id_rsa
+
+[loadbalancers]
+loadbalancer1 ansible_host=192.168.0.116 ansible_user=root ansible_ssh_private_key=/root/.ssh/id_rsa
+loadbalancer2 ansible_host=192.168.0.106 ansible_user=root ansible_ssh_private_key=/root/.ssh/id_rsa
