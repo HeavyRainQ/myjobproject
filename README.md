@@ -1,1 +1,1 @@
-nginx_haproxy
+nginx_haproxy_keepalived
